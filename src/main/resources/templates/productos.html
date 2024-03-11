@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Conoce nuestros productos</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="/css/productos.css">
+</head>
+<body>
+	<div th:replace="~{navbar :: navbar}"></div>
+	<section class="slogan-section"
+		style="background-color: #007bff; color: white;">
+		<div class="container">
+			<h1 class="slogan">Productos líderes en el mercado</h1>
+		</div>
+	</section>
+	<section class="section"
+		style="background-color: #dff0ff; padding: 50px 0;">
+		<div class="container">
+			<div class="row d-flex justify-content-center">
+				<div class="col-md-2 feature text-center">
+					<i class="fas fa-mobile-alt icon" style="color: #f48c42;"></i>
+					<h3>Smartphones</h3>
+				</div>
+				<div class="col-md-2 feature text-center">
+					<i class="fas fa-tablet-alt icon" style="color: #f48c42;"></i>
+					<h3>Tablets</h3>
+				</div>
+				<div class="col-md-2 feature text-center">
+					<i class="fas fa-headphones icon" style="color: #f48c42;"></i>
+					<h3>Auriculares</h3>
+				</div>
+				<div class="col-md-2 feature text-center">
+					<i class="fas fa-laptop icon" style="color: #f48c42;"></i>
+					<h3>Laptops</h3>
+				</div>
+				<div class="col-md-2 feature text-center">
+					<i class="fas fa-tv icon" style="color: #f48c42;"></i>
+					<h3>Televisores</h3>
+				</div>
+				<div class="col-md-2 feature text-center">
+					<i class="fas fa-camera icon" style="color: #f48c42;"></i>
+					<h3>Cámaras</h3>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<div class="content mt-4">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="filter-menu">
+						<h4>Filtrar por:</h4>
+						<select class="form-select" aria-label="Categoría">
+							<option selected>Categoría</option>
+							<option value="1">Smartphones</option>
+							<option value="2">Tablets</option>
+							<option value="3">Auriculares</option>
+							<option value="1">Laptops</option>
+							<option value="2">Televisores</option>
+							<option value="3">Cámaras</option>
+						</select>						
+						<input type="range" class="form-range" min="0" max="100" step="5"
+							id="customRange3">
+					</div>
+				</div>
+				<div class="col-md-9">
+					<div class="card shadow">
+						<div
+							class="card-header d-flex align-items-center justify-content-between">
+							<h3 class="card-title">Lista de Productos</h3>
+						</div>
+						<div class="card-body">
+							<div th:each="persona, iterStat : ${personas}">
+								<div class="card">
+									<div class="card-body">
+										<h5 class="card-title" th:text="${persona.name}"></h5>
+										<br>
+										<p class="card-text">
+											Precio: S/. <span th:text="${persona.precioVenta}"></span>
+										</p>
+										<div class="button-container">
+											<a th:href="@{'/detalle/' + ${persona.id}}"
+												class="btn btn-info"><i class="fas fa-info-circle"></i>
+												Detalle</a>
+											<form th:action="@{/agregarAlCarrito/{id}(id=${persona.id})}"
+												method="post">
+												<button type="submit" class="btn btn-success">
+													<i class="fas fa-plus"></i> Agregar al carrito
+												</button>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<div th:replace="~{footer :: footer}"></div>
+</body>
+</html>

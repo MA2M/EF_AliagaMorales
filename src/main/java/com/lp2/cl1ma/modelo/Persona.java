@@ -18,11 +18,12 @@ public class Persona {
     private int precioCompra;
     private int precioVenta;
     private int existencia;
+    private boolean enCarrito; 
     
     public Persona() {        
     }
 
-    public Persona(int id, String name, String telefono, int precioCompra, int precioVenta, int existencia) {
+    public Persona(int id, String name, String telefono, int precioCompra, int precioVenta, int existencia, boolean enCarrito) {
         super();
         this.id = id;
         this.name = name;
@@ -30,6 +31,7 @@ public class Persona {
         this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
         this.existencia = existencia;
+        this.enCarrito = enCarrito;
     }
 
     public int getId() {
@@ -69,5 +71,13 @@ public class Persona {
 
     public void setExistencia(int existencia) {
         this.existencia = existencia;
+    }
+    
+    public boolean isEnCarrito() {
+        return enCarrito;
+    }
+
+    public void setEnCarrito(boolean enCarrito) {
+        this.enCarrito = enCarrito;
     }
 }

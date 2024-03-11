@@ -1,0 +1,38 @@
+@charset "ISO-8859-1";
+
+body {
+	background-color: #dee2e6;
+	color: #212529;
+}
+
+.card {
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 0;
+    background-color: #fff;
+}
+
+.table th,
+.table td {
+    border: none;
+}
+
+.table th {
+    font-weight: bold;
+    background-color: #f8f9fa;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+    border-bottom: none; 
+    padding: 1rem; 
+}
+
+

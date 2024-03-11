@@ -11,13 +11,18 @@ import com.lp2.cl1ma.interfaces.IPersona;
 import com.lp2.cl1ma.modelo.Persona;
 
 @Service
-public class PersonaService implements IpersonaService{
-	
+public class PersonaService implements IpersonaService {
+
 	@Autowired
 	private IPersona data;
+
+	public List<Persona> listarEnCarrito() {
+		return data.findByEnCarritoTrue();
+	}
+
 	@Override
-	public List<Persona> listar() {		
-		return (List<Persona>)data.findAll();
+	public List<Persona> listar() {
+		return (List<Persona>) data.findAll();
 	}
 
 	@Override
@@ -27,17 +32,17 @@ public class PersonaService implements IpersonaService{
 
 	@Override
 	public int save(Persona p) {
-		int res=0;
-		Persona persona=data.save(p);
-		if(persona.equals(null)) {
-			res=1;
+		int res = 0;
+		Persona persona = data.save(p);
+		if (persona.equals(null)) {
+			res = 1;
 		}
 		return res;
 	}
 
 	@Override
 	public void delete(int id) {
-		data.deleteById(id);		
+		data.deleteById(id);
 	}
 
 }

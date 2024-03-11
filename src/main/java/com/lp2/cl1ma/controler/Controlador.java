@@ -20,37 +20,52 @@ import com.lp2.cl1ma.modelo.Persona;
 public class Controlador {
 
 	@Autowired
-	private IpersonaService service;
-	
+	private IpersonaService service;	
+    
 	@GetMapping("/listar")
 	public String listar(Model model) {
-		List<Persona>personas=service.listar();
+		List<Persona> personas = service.listar();
 		model.addAttribute("personas", personas);
 		return "index";
 	}
 	
+	@GetMapping("/productos")
+	public String listar1(Model model) {
+		List<Persona> personas = service.listar();
+		model.addAttribute("personas", personas);
+		return "productos";
+	}
+
 	@GetMapping("/new")
 	public String agregar(Model model) {
 		model.addAttribute("persona", new Persona());
 		return "form";
 	}
+
 	@PostMapping("/save")
-	public String save(@Validated Persona p,Model model) {
+	public String save(@Validated Persona p, Model model) {
 		service.save(p);
 		return "redirect:/listar";
 	}
-	
+
 	@GetMapping("/editar/{id}")
 	public String editar(@PathVariable int id, Model model) {
-		Optional<Persona>persona=service.listarId(id);
+		Optional<Persona> persona = service.listarId(id);
 		model.addAttribute("persona", persona);
 		return "form";
 	}
+	
+	@GetMapping("/detalle/{id}")
+	public String ver(@PathVariable int id, Model model) {
+		Optional<Persona> persona = service.listarId(id);
+		model.addAttribute("persona", persona);
+		return "detalle";
+	}
+
 	@GetMapping("/eliminar/{id}")
 	public String delete(Model model, @PathVariable int id) {
 		service.delete(id);
 		return "redirect:/listar";
 	}
 
-	
 }
